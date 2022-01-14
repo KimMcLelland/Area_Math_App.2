@@ -1,7 +1,7 @@
 import sys
 
 from PyQt6.QtCore import QSize, Qt
-from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton, QLabel, QLineEdit, QVBoxLayout, QWidget
+from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton, QLabel, QLineEdit, QVBoxLayout, QWidget, QSpinBox
 
 from random import choice
 
@@ -14,15 +14,15 @@ class MainWindow(QMainWindow):
 
         #defining the different elements of the app
         prompt1 = QLabel("Building height:")
-        input1 = QLineEdit()
+        input1 = QSpinBox()
         prompt2 = QLabel("Building width:")
-        input2 = QLineEdit()
+        input2 = QSpinBox()
         prompt3 = QLabel("Building depth:")
-        input3 = QLineEdit()
+        input3 = QSpinBox()
         prompt4 = QLabel("number of floors:")
-        input4 = QLineEdit()
+        input4 = QSpinBox()
         prompt5 = QLabel("number of doors:")
-        input5 = QLineEdit()
+        input5 = QSpinBox()
         self.button = QPushButton("Calculate")
         
         #the app layout
