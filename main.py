@@ -23,6 +23,12 @@ class MainWindow(QMainWindow):
         input4 = QSpinBox()
         prompt5 = QLabel("number of doors:")
         input5 = QSpinBox()
+        prompt6 = QLabel("number of windows:")
+        input6 = QSpinBox()
+        prompt7 = QLabel("size of windows:")
+        input7 = QSpinBox()
+        multiplylabel =  QLabel("X")
+        input8 = QSpinBox()
         self.button = QPushButton("Calculate")
         
         #the app layout
@@ -37,6 +43,12 @@ class MainWindow(QMainWindow):
         layout.addWidget(input4)
         layout.addWidget(prompt5)
         layout.addWidget(input5)
+        layout.addWidget(prompt6)
+        layout.addWidget(input6)
+        layout.addWidget(prompt7)
+        layout.addWidget(input7)
+        layout.addWidget(multiplylabel)
+        layout.addWidget(input8)
         layout.addWidget(self.button)
 
         container = QWidget()
@@ -44,7 +56,7 @@ class MainWindow(QMainWindow):
 
         self.setWindowTitle("Area Math")
 
-        self.setMinimumSize(QSize(400, 300))
+        self.setMinimumSize(QSize(400, 500))
 
         self.setCentralWidget(container)
 
