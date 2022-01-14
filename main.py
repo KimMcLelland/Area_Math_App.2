@@ -38,6 +38,7 @@ class MainWindow(QMainWindow):
         prompt5.setAlignment(Qt.AlignmentFlag.AlignLeft)
         prompt6.setAlignment(Qt.AlignmentFlag.AlignLeft)
         prompt7.setAlignment(Qt.AlignmentFlag.AlignLeft)
+        multiplylabel.setAlignment(Qt.AlignmentFlag.AlignHCenter)
 
         
         #the app layout
@@ -81,7 +82,7 @@ class MainWindow(QMainWindow):
         layout.addLayout(question5)
         layout.addLayout(question6)
         layout.addLayout(question7)
-        
+
         layout.addWidget(self.button)
 
         container = QWidget()
