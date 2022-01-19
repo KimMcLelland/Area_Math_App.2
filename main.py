@@ -1,9 +1,10 @@
 import sys
 
+
 from PyQt6.QtCore import QSize, Qt
 from PyQt6.QtWidgets import QApplication, QMainWindow, QPushButton, QLabel, QLineEdit, QVBoxLayout, QHBoxLayout, QWidget, QSpinBox
 
-from random import choice
+#from random import choice
 
 
 
@@ -29,7 +30,28 @@ class MainWindow(QMainWindow):
         input7 = QSpinBox()
         multiplylabel =  QLabel("X")
         input8 = QSpinBox()
-        self.button = QPushButton("Calculate")
+
+        walls = QLabel("Walls: ")
+        wallsLength = QLabel("0")
+        wallsHeight = QLabel("0")
+        wallsDepth = QLabel("0")
+        multiply = QLabel(" X ")
+        openBracket = QLabel(" (")
+        closeBracket =QLabel(" )")
+
+        floors1 = QLabel("Floors: ")
+        floors2 = QLabel("0")
+
+        doors1 = QLabel("Doors: ")
+        doors2 = QLabel("0")
+
+        windows1 = QLabel("Windows: ")
+        windows2 = QLabel("0")
+        windowHeight = QLabel("0")
+        windowLength = QLabel("0")
+
+        button = QPushButton("Calculate")
+        result = QLabel("")
 
         prompt1.setAlignment(Qt.AlignmentFlag.AlignLeft)
         prompt2.setAlignment(Qt.AlignmentFlag.AlignLeft)
@@ -47,6 +69,8 @@ class MainWindow(QMainWindow):
         question1 = QHBoxLayout()
         question1.addWidget(prompt1)
         question1.addWidget(input1)
+        
+        
 
         question2 = QHBoxLayout()
         question2.addWidget(prompt2)
@@ -73,6 +97,31 @@ class MainWindow(QMainWindow):
         question7.addWidget(input7)
         question7.addWidget(multiplylabel)
         question7.addWidget(input8)
+
+        wallSummary = QHBoxLayout()
+        wallSummary.addWidget(walls)
+        wallSummary.addWidget(wallsLength)
+        wallSummary.addWidget(multiply)
+        wallSummary.addWidget(wallsDepth)
+        wallSummary.addWidget(multiply)
+        wallSummary.addWidget(wallsHeight)
+
+        floorSummary = QHBoxLayout()
+        floorSummary.addWidget(floors1)
+        floorSummary.addWidget(floors2)
+
+        doorSummary = QHBoxLayout()
+        doorSummary.addWidget(doors1)
+        doorSummary.addWidget(doors2)
+
+        WindowSummary = QHBoxLayout()
+        WindowSummary.addWidget(windows1)
+        WindowSummary.addWidget(windows2)
+        WindowSummary.addWidget(openBracket)
+        WindowSummary.addWidget(windowHeight)
+        WindowSummary.addWidget(multiply)
+        WindowSummary.addWidget(windowLength)
+        WindowSummary.addWidget(closeBracket)
         
         #nesting layouts
         layout.addLayout(question1)
@@ -82,8 +131,13 @@ class MainWindow(QMainWindow):
         layout.addLayout(question5)
         layout.addLayout(question6)
         layout.addLayout(question7)
+        layout.addLayout(wallSummary)
+        layout.addLayout(floorSummary)
+        layout.addLayout(doorSummary)
+        layout.addLayout(WindowSummary)
 
-        layout.addWidget(self.button)
+        layout.addWidget(button)
+        layout.addWidget(result)
 
         container = QWidget()
         container.setLayout(layout)
@@ -93,6 +147,30 @@ class MainWindow(QMainWindow):
         self.setMinimumSize(QSize(400, 500))
 
         self.setCentralWidget(container)
+
+        #the function of the app
+        
+        input1.textChanged.connect(wallsHeight.setText)
+        input2.textChanged.connect(wallsLength.setText)
+        input3.textChanged.connect(wallsDepth.setText)
+        input4.textChanged.connect(floors2.setText)
+        input5.textChanged.connect(doors2.setText)
+        input6.textChanged.connect(windows2.setText)
+        input7.textChanged.connect(windowHeight.setText)
+        input8.textChanged.connect(windowLength.setText)
+       
+
+        
+            
+
+        
+
+
+        
+
+        
+
+        
 
 
 
