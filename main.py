@@ -36,6 +36,8 @@ class MainWindow(QMainWindow):
         wallsHeight = QLabel("0")
         wallsDepth = QLabel("0")
         multiply = QLabel(" X ")
+        multiply2 = QLabel(" X ")
+        multiply3 = QLabel(" X ")
         openBracket = QLabel(" (")
         closeBracket =QLabel(" )")
 
@@ -94,17 +96,20 @@ class MainWindow(QMainWindow):
 
         question7 = QHBoxLayout()
         question7.addWidget(prompt7)
-        question7.addWidget(input7)
-        question7.addWidget(multiplylabel)
-        question7.addWidget(input8)
+        windowsAnswer = QHBoxLayout()
+        question7.addLayout(windowsAnswer)
+        windowsAnswer.addWidget(input7)
+        windowsAnswer.addWidget(multiplylabel)
+        windowsAnswer.addWidget(input8)
 
         wallSummary = QHBoxLayout()
         wallSummary.addWidget(walls)
         wallSummary.addWidget(wallsLength)
         wallSummary.addWidget(multiply)
         wallSummary.addWidget(wallsDepth)
-        wallSummary.addWidget(multiply)
+        wallSummary.addWidget(multiply2)
         wallSummary.addWidget(wallsHeight)
+        
 
         floorSummary = QHBoxLayout()
         floorSummary.addWidget(floors1)
@@ -119,7 +124,7 @@ class MainWindow(QMainWindow):
         WindowSummary.addWidget(windows2)
         WindowSummary.addWidget(openBracket)
         WindowSummary.addWidget(windowHeight)
-        WindowSummary.addWidget(multiply)
+        WindowSummary.addWidget(multiply3)
         WindowSummary.addWidget(windowLength)
         WindowSummary.addWidget(closeBracket)
         
@@ -158,23 +163,7 @@ class MainWindow(QMainWindow):
         input6.textChanged.connect(windows2.setText)
         input7.textChanged.connect(windowHeight.setText)
         input8.textChanged.connect(windowLength.setText)
-       
-
         
-            
-
-        
-
-
-        
-
-        
-
-        
-
-
-
-
 app = QApplication(sys.argv)
 
 window = MainWindow()
