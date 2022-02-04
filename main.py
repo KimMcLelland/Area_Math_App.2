@@ -31,37 +31,6 @@ class MainWindow(QMainWindow):
         multiplylabel =  QLabel("X")
         input8 = QSpinBox()
 
-
-        walls = QLabel("Walls: ")
-        font = walls.font()
-        font.setBold(True)
-        walls.setFont(font)
-        wallsLength = QLabel("0")
-        multiply = QLabel(" X ")
-        wallsHeight = QLabel("0")
-        multiply2 = QLabel(" X ")
-        wallsDepth = QLabel("0")
-
-        floors1 = QLabel("Floors: ")
-        floors1.setFont(font)
-        floors2 = QLabel("0")
-
-        doors1 = QLabel("Doors: ")
-        doors1.setFont(font)
-        doors2 = QLabel("0")
-
-        windows1 = QLabel("Windows: ")
-        windows1.setFont(font)
-        windows2 = QLabel("0")
-        openBracket = QLabel(" (")
-        windowHeight = QLabel("0")
-        multiply3 = QLabel(" X ")
-        windowLength = QLabel("0")
-        closeBracket =QLabel(" )")
-
-        button = QPushButton("Calculate")
-        result = QLabel("")
-
         prompt1.setAlignment(Qt.AlignmentFlag.AlignLeft)
         prompt2.setAlignment(Qt.AlignmentFlag.AlignLeft)
         prompt3.setAlignment(Qt.AlignmentFlag.AlignLeft)
@@ -70,6 +39,26 @@ class MainWindow(QMainWindow):
         prompt6.setAlignment(Qt.AlignmentFlag.AlignLeft)
         prompt7.setAlignment(Qt.AlignmentFlag.AlignLeft)
         multiplylabel.setAlignment(Qt.AlignmentFlag.AlignHCenter)
+
+        calculate = QPushButton("Calculate")
+        calculate.setCheckable(True)
+        
+        wallsWidth = 0
+        wallsHeight = 0
+        wallsDepth = 0
+        floors = 0
+        doors = 0
+        windowNumber = 0
+        windowHeight = 0
+        windowLength = 0
+
+        
+        wallText = QLabel("The amount of blocks you need for the walls are: ")
+        wallResult = QLabel("")
+        floorText = QLabel("The amount of blocks you need for the floors are: ")
+        floorResult = QLabel("")
+        roofText = QLabel("The amount of blocks you'll likely need for the roof are: ")
+        roofResult = QLabel("")
 
         
         #the app layout
@@ -109,27 +98,20 @@ class MainWindow(QMainWindow):
         windowsAnswer.addWidget(multiplylabel)
         windowsAnswer.addWidget(input8)
 
-        Summary = QHBoxLayout()
-        Summary.addWidget(walls)
-        Summary.addWidget(wallsLength)
-        Summary.addWidget(multiply)
-        Summary.addWidget(wallsDepth)
-        Summary.addWidget(multiply2)
-        Summary.addWidget(wallsHeight)
+        result = QVBoxLayout()
+        wallSummary = QHBoxLayout()
+        result.addLayout(wallSummary)
+        wallSummary.addWidget(wallText)
+        wallSummary.addWidget(wallResult)
+        floorSummary = QHBoxLayout()
+        result.addLayout(floorSummary)
+        floorSummary.addWidget(floorText)
+        floorSummary.addWidget(floorResult)
+        roofSummary = QHBoxLayout()
+        result.addLayout(roofSummary)
+        roofSummary.addWidget(roofText)
+        roofSummary.addWidget(roofResult)
 
-        Summary.addWidget(doors1)
-        Summary.addWidget(doors2)
-
-        Summary.addWidget(floors1)
-        Summary.addWidget(floors2)
-
-        Summary.addWidget(windows1)
-        Summary.addWidget(windows2)
-        Summary.addWidget(openBracket)
-        Summary.addWidget(windowHeight)
-        Summary.addWidget(multiply3)
-        Summary.addWidget(windowLength)
-        Summary.addWidget(closeBracket)
         
         #nesting layouts
         layout.addLayout(question1)
@@ -139,10 +121,8 @@ class MainWindow(QMainWindow):
         layout.addLayout(question5)
         layout.addLayout(question6)
         layout.addLayout(question7)
-        layout.addLayout(Summary)
-
-        layout.addWidget(button)
-        layout.addWidget(result)
+        layout.addWidget(calculate)
+        layout.addLayout(result)
 
         container = QWidget()
         container.setLayout(layout)
@@ -155,14 +135,29 @@ class MainWindow(QMainWindow):
 
         #the function of the app
         
-        input1.textChanged.connect(wallsHeight.setText)
-        input2.textChanged.connect(wallsLength.setText)
-        input3.textChanged.connect(wallsDepth.setText)
-        input4.textChanged.connect(floors2.setText)
-        input5.textChanged.connect(doors2.setText)
-        input6.textChanged.connect(windows2.setText)
-        input7.textChanged.connect(windowHeight.setText)
-        input8.textChanged.connect(windowLength.setText)
+        def Button_pressed():
+            wallsWidth = input2.value()
+            wallsHeight = input1.value()
+            wallsDepth = input3.value()
+            floors = input4.value()
+            doors = input5.value()
+            windowNumber = input6.value()
+            windowHeight = input7.value()
+            windowLength = input8.value()
+            windowCalculation = windowHeight * windowLength * windowNumber
+            doorCalculation = doors * 2
+            wallCalculation = (wallsWidth * wallsHeight * wallsDepth) - windowCalculation - doorCalculation
+            area = (wallsWidth - 1) * (wallsDepth - 1)
+            floorCalculation = (area * floors) + doors
+            roofCalculation = (wallsWidth + 2) * (wallsDepth + 2)
+            wallResult.setText(str(wallCalculation))
+            floorResult.setText(str(floorCalculation))
+            roofResult.setText(str(roofCalculation))
+        
+
+        calculate.clicked.connect(Button_pressed)
+
+        
         
 app = QApplication(sys.argv)
 
