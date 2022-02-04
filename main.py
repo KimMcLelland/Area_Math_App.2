@@ -42,15 +42,6 @@ class MainWindow(QMainWindow):
 
         calculate = QPushButton("Calculate")
         calculate.setCheckable(True)
-        
-        wallsWidth = 0
-        wallsHeight = 0
-        wallsDepth = 0
-        floors = 0
-        doors = 0
-        windowNumber = 0
-        windowHeight = 0
-        windowLength = 0
 
         
         wallText = QLabel("The amount of blocks you need for the walls are: ")
@@ -136,20 +127,18 @@ class MainWindow(QMainWindow):
         #the function of the app
         
         def Button_pressed():
-            wallsWidth = input2.value()
-            wallsHeight = input1.value()
-            wallsDepth = input3.value()
-            floors = input4.value()
-            doors = input5.value()
-            windowNumber = input6.value()
-            windowHeight = input7.value()
-            windowLength = input8.value()
-            windowCalculation = windowHeight * windowLength * windowNumber
-            doorCalculation = doors * 2
-            wallCalculation = (wallsWidth * wallsHeight * wallsDepth) - windowCalculation - doorCalculation
-            area = (wallsWidth - 1) * (wallsDepth - 1)
-            floorCalculation = (area * floors) + doors
-            roofCalculation = (wallsWidth + 2) * (wallsDepth + 2)
+            windowCalculation = input7.value() * input8.value() * input6.value()
+
+            doorCalculation = input5.value() * 2
+
+            singleFace1 = (input2.value() -1) * input1.value() 
+            singleFace2 = (input3.value() - 1) * input1.value()
+            wallCalculation = (singleFace1 * 2) + (singleFace2 * 2) - windowCalculation - doorCalculation
+            
+            area = (input2.value() - 2) * (input3.value() - 2)
+            floorCalculation = (area * input4.value()) + input5.value()
+            roofCalculation = (input2.value() + 2) * (input3.value() + 2)
+            
             wallResult.setText(str(wallCalculation))
             floorResult.setText(str(floorCalculation))
             roofResult.setText(str(roofCalculation))
