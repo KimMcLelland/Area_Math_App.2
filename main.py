@@ -136,7 +136,7 @@ class MainWindow(QMainWindow):
         #the function of the app
         
         def Button_pressed():
-            # window height x window width x number of windows
+            # gwindow height x window width x number of windows
             windowCalculation = input7.value() * input8.value() * input6.value()
 
             # number of doors x 2 for wall calculation (doors are 2 blocks high)
